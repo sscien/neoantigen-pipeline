@@ -1,1 +1,17 @@
+follow /storage1/fs1/songcao/Active/Project/CPTAC/neoantigen/PDA to create the sub-folder
 
+cp -r /storage1/fs1/songcao/Active/Project/CPTAC/neoantigen/PDA /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing
+
+
+i have copied the input files to /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/data.from.mgi
+white_check_mark
+eyes
+raised_hands::skin-tone-3
+
+
+2:47
+you only need to create a run folder, then create a subfolder by using the sample name under the run folder
+2:47
+then copy the snp, indel, bam file for each sample to the corresponding subfolder
+2:48
+then by following https://github.com/ding-lab/neoscan/tree/cp1.v1.3 you can run the jobs
