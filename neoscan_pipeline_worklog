@@ -4,14 +4,66 @@ cp -r /storage1/fs1/songcao/Active/Project/CPTAC/neoantigen/PDA /storage1/fs1/di
 
 
 i have copied the input files to /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/data.from.mgi
+
+you only need to create a run folder, then create a subfolder by using the sample name under the run folder
+then copy the snp, indel, bam file for each sample to the corresponding subfolder
+then by following https://github.com/ding-lab/neoscan/tree/cp1.v1.3 you can run the jobs
+
+cd /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA
+
+mkdir C3N-001598
+
+cd C3N-001598
+ln -s /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/data.from.mgi/C3L-01598.bam C3L-01598.bam
+
+ln -s /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/data.from.mgi/C3L-01598.indel.vcf C3L-01598.indel.vcf
+
+ln -s /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/data.from.mgi/C3L-01598.snp.vcf C3L-01598.snp.vcf
+
+
+sftp://compute1-client-1.ris.wustl.edu/storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/data.from.mgi/C3N-00148.snp.vcf
+
+Usage
+
+perl neoscan.pl --rdir --log --bamfq --bed --rna --refdir --step <step_number>
+
+
+i am running the somaticwrapper jobs:
+3:08
+the command line is like $bsub_com = “LSF_DOCKER_PRESERVE_ENVIRONMENT=false bsub -g /$compute_username/$group_name -q $q_name -n 4 -R \“select[mem>30000] rusage[mem=30000]\” -M 30000000 -a \‘docker(scao/dailybox)\’ -o $lsf_out -e $lsf_err bash $sh_file\n”;
+3:08
+i guess you can try to neoscan pipeline
+3:08
+instead of somaticwrapper
+3:09
+but you need to first create the input file structures as I told you before (edited) 
 white_check_mark
 eyes
 raised_hands::skin-tone-3
 
 
-2:47
-you only need to create a run folder, then create a subfolder by using the sample name under the run folder
-2:47
-then copy the snp, indel, bam file for each sample to the corresponding subfolder
-2:48
-then by following https://github.com/ding-lab/neoscan/tree/cp1.v1.3 you can run the jobs
+cd /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598
+
+git clone https://github.com/ding-lab/neoscan.git
+
+perl neoscan.pl --rdir /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/ --log /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/C3L-01598.log --bam 1 --bed hg38_RefSeq.bed --rna 0 --refdir /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/neoscan --step 1
+
+perl neoscan.pl --rdir /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/ --log /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/C3L-01598.log --bam 1 --bed hg38_RefSeq.bed --rna 0 --refdir /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/neoscan --step 2
+
+perl neoscan.pl --rdir /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/ --log /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/C3L-01598.log --bam 1 --bed hg38_RefSeq.bed --rna 0 --refdir /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/neoscan --step 3
+
+bash /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3N-001598.log/tmpNeo/j1_fa_C3L-01598.sh
+bash /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/C3L-01598.log/tmpNeo/j6_final_report_C3L-01598.sh
+bash /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3N-001598.log/tmpNeo/j1_fa_C3N-01192.sh
+
+## Song's newest readme
+perl neoscan.pl --rdir /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/ --log /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3L-01598/C3L-01598.log --bam 1 --bed /storage1/fs1/songcao/Active/Database/hg38_database/refseq/refseq_hg38_june29/proteome.bed --rna 0 --refdir /storage1/fs1/songcao/Active/Database/hg38_database/refseq/refseq_hg38_june29 --step 1
+
+
+bash /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/C3N-001598.log/tmpNeo/j1_fa_neoscan.sh
+
+
+hg38_RefSeq.bed
+
+#### 1. softlink exome normal bam and vcf files: /storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/
+perl -e '$dir="/storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/data.from.mgi"; $dir_out="/storage1/fs1/dinglab/Active/Projects/PECGS/PECGS_pipeline/neoscan/EJ_testing/PDA/C3N-001598/"; foreach $f (`ls $dir`) { $ftr=$f; chomp($ftr);  if($ftr=~/vcf$/ || $ftr=~/bam$/) { @t=split(/\./,$ftr); $sn=$t[0];  $dirs=$dir_out."/".$sn; if (!-d $dirs) { `mkdir $dirs`}; $f_out=$dirs."/".$ftr; $f_in=$dir."/".$ftr; print $f_in,"\n"; <STDIN>; `ln -s $f_in $f_out`; } }'
